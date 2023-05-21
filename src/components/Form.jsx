@@ -3,6 +3,9 @@ import "./Form.css";
 
 const Form = (props) => {
   const [templateEntry, setTemplate] = useState("");
+  const [checkDuplicate, setCheckDuplicate] = useState(false);
+  const [checkInvalid, setCheckInvalid] = useState(false);
+
   const contacts = useRef();
 
   const templateHandler = (event) => {
@@ -19,6 +22,29 @@ const Form = (props) => {
     console.log("hola");
   };
 
+  const checkDuplicateHandler = () => {
+    setCheckDuplicate(!checkDuplicate);
+    if (!checkDuplicate) {
+      contacts.current.value = [
+        ...new Set(contacts.current.value.split("\n")),
+      ].join("\n");
+    }
+  };
+
+  function phonenumber(inputtxt) {
+    var phno = /^\d{10}$/;
+    return phno.test(inputtxt);
+  }
+
+  const checkInvalidHandler = () => {
+    setCheckInvalid(!checkInvalid);
+    if (!checkInvalid) {
+      let arr = contacts.current.value.split("\n");
+      arr = arr.filter(phonenumber);
+      contacts.current.value = arr.join("\n");
+    }
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(contacts.current.value.split("\n"));
@@ -27,20 +53,31 @@ const Form = (props) => {
 
   return (
     <form id="form" onSubmit={submitHandler}>
-      <label for="company">Company Name</label>
-      <select name="company" id="company">
-        <option value="BHELRP">BHELRP</option>
-      </select>
-      <label for="template">Template Name</label>
-      <select name="template" id="template" onChange={templateHandler} required>
-        <option value="none" selected disabled hidden>
-          Select a Template
-        </option>
-        {props.templates.map((record) => {
-          return <option value={record.code}>{record.template}</option>;
-        })}
-      </select>
-      <label for="contact">Contact Details</label>
+      <label htmlFor="company">
+        Company Name:{" "}
+        <select name="company" id="company">
+          <option value="BHELRP">BHELRP</option>
+        </select>
+      </label>
+
+      <label htmlFor="template">
+        Template Name:{" "}
+        <select
+          name="template"
+          id="template"
+          onChange={templateHandler}
+          required
+        >
+          <option value="none" selected disabled hidden>
+            Select a Template
+          </option>
+          {props.templates.map((record) => {
+            return <option value={record.code}>{record.template}</option>;
+          })}
+        </select>
+      </label>
+
+      <label htmlFor="contact">Contact Details: </label>
       <textarea
         rows="20"
         cols="50"
@@ -50,7 +87,28 @@ const Form = (props) => {
         required
         placeholder="Enter contact details separated by a new line"
       ></textarea>
-      <label for="message">Message</label>
+      <label className="checkbox" htmlFor="removeDuplicates">
+        <input
+          type="checkbox"
+          id="removeDuplicates"
+          name="removeDuplicates"
+          onChange={checkDuplicateHandler}
+          checked={checkDuplicate}
+        />
+        Remove Duplicates&emsp;
+      </label>
+
+      <label className="checkbox" htmlFor="removeInvalid">
+        <input
+          type="checkbox"
+          id="removeInvalid"
+          name="removeInvalid"
+          onChange={checkInvalidHandler}
+          checked={checkInvalid}
+        />
+        Remove Invalid&emsp;
+      </label>
+      <label htmlFor="message">Message: </label>
       <textarea
         rows="60"
         cols="80"
@@ -59,6 +117,7 @@ const Form = (props) => {
         value={templateEntry}
         onChange={messageChanger}
         required
+        placeholder="Enter the message to be sent"
       ></textarea>
       <button name="button" id="button">
         Send
