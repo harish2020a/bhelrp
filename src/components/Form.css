@@ -10,6 +10,10 @@ textarea {
   resize: none;
 }
 
+textarea:focus{
+  background-color: white;
+}
+
 select {
   width: 300%;
   padding: 16px 20px;
@@ -17,6 +21,10 @@ select {
   border-radius: 4px;
   background-color: #c7c7c7;
   color: black;
+}
+
+select:focus{
+  background-color: white;
 }
 
 label {
