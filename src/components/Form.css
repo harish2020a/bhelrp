@@ -3,15 +3,13 @@ textarea {
   height: 150px;
   padding: 12px 20px;
   box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #c7c7c7;
-  color: black;
+  border: 2px solid gray;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.4);
+  background: #2f2f2f;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+  color: #fff;
   resize: none;
-}
-
-textarea:focus{
-  background-color: white;
 }
 
 select {
@@ -19,38 +17,40 @@ select {
   padding: 16px 20px;
   border-color: darkgrey;
   border-radius: 4px;
-  background-color: #c7c7c7;
-  color: black;
-}
-
-select:focus{
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  background: #2f2f2f;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+  color: #b9b9b9;
+  font: inherit;
 }
 
 label {
-  /* color: #b4886b; */
   color: rgb(0, 0, 0);
   font-weight: bold;
   display: block;
   width: 130px;
-  /* float: left; */
+  margin-top: 5px;
 }
 
-#button {
+button, #link {
   padding: 10px;
   border: 1px solid gray;
-  background-color: #b4886b;
-  border-radius: 5px;
+  background: #2f2f2f;
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
   font: inherit;
+  margin-top: 20px;
+  float: left;
 }
 
-#button:focus {
+#button:focus, #link:focus {
   outline: 2px solid gray;
   font-weight: bold;
   color: white;
 }
 
-#button:hover {
+#button:hover, #link:hover {
   background-color: rgb(0, 0, 0);
   box-shadow: 3px 3px 5px grey;
 }
@@ -70,4 +70,13 @@ input[type="checkbox"] {
   vertical-align: bottom;
   position: relative;
   top: -1px;
+}
+#link {
+  cursor: pointer;
+  margin-bottom: 40px;
+  top: 0%;
+}
+
+#file {
+  display: none;
 }

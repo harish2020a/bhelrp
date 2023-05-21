@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import "./Form.css";
+import readXlsxFile from "read-excel-file";
 
 const Form = (props) => {
   const [templateEntry, setTemplate] = useState("");
@@ -45,6 +46,26 @@ const Form = (props) => {
     }
   };
 
+  const fileHandler = (event) => {
+    let file = event.target.files[0];
+    let fileExtension = file.name.split(".").pop();
+    if (fileExtension === "csv" || fileExtension === "txt") {
+      const fr = new FileReader();
+      fr.onload = function () {
+        contacts.current.value += fr.result + "\n";
+      };
+      fr.readAsText(file);
+    } else {
+      readXlsxFile(file).then((rows) => {
+        rows.forEach((row) => {
+          row.forEach((entry) => {
+            contacts.current.value += entry + "\n";
+          });
+        });
+      });
+    }
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(contacts.current.value.split("\n"));
@@ -66,13 +87,18 @@ const Form = (props) => {
           name="template"
           id="template"
           onChange={templateHandler}
+          defaultValue="none"
           required
         >
-          <option value="none" selected disabled hidden>
+          <option value="none" disabled hidden>
             Select a Template
           </option>
           {props.templates.map((record) => {
-            return <option value={record.code}>{record.template}</option>;
+            return (
+              <option key={record.code} value={record.code}>
+                {record.template}
+              </option>
+            );
           })}
         </select>
       </label>
@@ -108,6 +134,11 @@ const Form = (props) => {
         />
         Remove Invalid&emsp;
       </label>
+      <label id="link" htmlFor="file">
+        Text/Excel(Contacts)
+        <input type="file" id="file" onChange={fileHandler}></input>
+      </label>
+
       <label htmlFor="message">Message: </label>
       <textarea
         rows="60"
@@ -119,8 +150,8 @@ const Form = (props) => {
         required
         placeholder="Enter the message to be sent"
       ></textarea>
-      <button name="button" id="button">
-        Send
+      <button type="submit" name="button" id="button">
+        Send Message
       </button>
     </form>
   );
