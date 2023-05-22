@@ -80,28 +80,6 @@ const Form = (props) => {
         </select>
       </label>
 
-      <label htmlFor="template">
-        Template Name:{" "}
-        <select
-          name="template"
-          id="template"
-          onChange={templateHandler}
-          defaultValue="none"
-          required
-        >
-          <option value="none" disabled hidden>
-            Select a Template
-          </option>
-          {props.templates.map((record) => {
-            return (
-              <option key={record.code} value={record.code}>
-                {record.template}
-              </option>
-            );
-          })}
-        </select>
-      </label>
-
       <label htmlFor="contact">Contact Details: </label>
       <textarea
         rows="20"
@@ -149,6 +127,27 @@ const Form = (props) => {
         required
         placeholder="Enter the message to be sent"
       ></textarea>
+      <label htmlFor="template">
+        Template Name:{" "}
+        <select
+          name="template"
+          id="template"
+          onChange={templateHandler}
+          defaultValue="none"
+          required
+        >
+          <option value="none" disabled hidden>
+            Select a Template
+          </option>
+          {props.templates.map((record) => {
+            return (
+              <option key={record.code} value={record.code}>
+                {record.template}
+              </option>
+            );
+          })}
+        </select>
+      </label>
       <button type="submit" name="button" id="button">
         Send Message
       </button>

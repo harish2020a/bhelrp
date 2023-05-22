@@ -13,7 +13,7 @@ textarea {
 }
 
 select {
-  width: 300%;
+  width: 250%;
   padding: 16px 20px;
   border-color: darkgrey;
   border-radius: 4px;
@@ -81,9 +81,11 @@ input[type="checkbox"] {
   display: none;
 }
 
-@media (max-width: 1250px) {
-  #form {
-    width: 40rem;
-    left: calc(50% - 20rem);
+@media (max-width: 480px) {
+  form {
+    width: 22rem;
+  }
+  select{
+    width: 22rem;
   }
 }
