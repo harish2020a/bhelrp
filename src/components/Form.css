@@ -80,3 +80,10 @@ input[type="checkbox"] {
 #file {
   display: none;
 }
+
+@media (max-width: 1250px) {
+  #form {
+    width: 40rem;
+    left: calc(50% - 20rem);
+  }
+}

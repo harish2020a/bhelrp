@@ -68,7 +68,7 @@ const Form = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(contacts.current.value.split("\n"));
+    console.log(templateEntry);
   };
 
   return (
