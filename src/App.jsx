@@ -1,8 +1,16 @@
-import React from "react";
-import "./App.css";
+import React, { useEffect, useState } from "react";
 import Form from "./components/Form";
+import Login from "./components/Login";
 
 function App() {
+  useEffect(() => {
+    const logCheck = localStorage.getItem("isLoggedIn");
+    if (logCheck === "1") {
+      setIsLoggedIn(true);
+    }
+  }, []);
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const DUMMY_TEMPLATES = [
     {
       code: 100,
@@ -35,9 +43,24 @@ function App() {
         "Hi <First-name>,\nYou probably get this often, but your background caught my eye.\nI'm a recruiter at {your_company_name}. I'm reaching out because I think that with your experience in X, you would be a great fit for one of our client's open roles for {position_name}\nAre you open to a chat?\nThanks,\n<Signature>",
     },
   ];
+
+  const logoutHandler = () => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+  };
+
+  const loginHandler = (email, pwd) => {
+    localStorage.setItem("isLoggedIn", "1");
+    setIsLoggedIn(true);
+    console.log(email, pwd);
+  };
+
   return (
     <React.Fragment>
-      <Form templates={DUMMY_TEMPLATES} />
+      {isLoggedIn && (
+        <Form templates={DUMMY_TEMPLATES} onLogout={logoutHandler} />
+      )}
+      {!isLoggedIn && <Login onLogin={loginHandler} />}
     </React.Fragment>
   );
 }

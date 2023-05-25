@@ -1,4 +1,11 @@
-textarea {
+.arbitrary {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.textarea {
   width: 100%;
   height: 150px;
   padding: 12px 20px;
@@ -12,7 +19,7 @@ textarea {
   resize: none;
 }
 
-select {
+.select {
   width: 250%;
   padding: 16px 20px;
   border-color: darkgrey;
@@ -24,7 +31,7 @@ select {
   font: inherit;
 }
 
-label {
+.label {
   color: rgb(0, 0, 0);
   font-weight: bold;
   display: block;
@@ -32,7 +39,8 @@ label {
   margin-top: 5px;
 }
 
-button, #link {
+.button,
+.link {
   padding: 10px;
   border: 1px solid gray;
   background: #2f2f2f;
@@ -44,13 +52,15 @@ button, #link {
   float: left;
 }
 
-#button:focus, #link:focus {
+.button:focus,
+.link:focus {
   outline: 2px solid gray;
   font-weight: bold;
   color: white;
 }
 
-#button:hover, #link:hover {
+.button:hover,
+.link:hover {
   background-color: rgb(0, 0, 0);
   box-shadow: 3px 3px 5px grey;
 }
@@ -62,7 +72,7 @@ button, #link {
   display: contents;
 }
 
-input[type="checkbox"] {
+.inputcheck {
   width: 15px;
   height: 15px;
   padding: 0;
@@ -71,13 +81,14 @@ input[type="checkbox"] {
   position: relative;
   top: -1px;
 }
-#link {
+
+.link {
   cursor: pointer;
   margin-bottom: 40px;
   top: 0%;
 }
 
-#file {
+.file {
   display: none;
 }
 
@@ -85,7 +96,7 @@ input[type="checkbox"] {
   form {
     width: 22rem;
   }
-  select{
+  select {
     width: 22rem;
   }
 }
