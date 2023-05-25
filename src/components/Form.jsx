@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
 import classes from "./Form.module.css";
 import readXlsxFile from "read-excel-file";
+import Modal from "./UI/Modal";
 
 const Form = (props) => {
   const [templateEntry, setTemplate] = useState("");
   const [checkDuplicate, setCheckDuplicate] = useState(false);
   const [checkInvalid, setCheckInvalid] = useState(false);
+  const [msgSent, setMsgSent] = useState("");
 
   const contacts = useRef();
 
@@ -64,11 +66,20 @@ const Form = (props) => {
     }
   };
 
+  const messageSentHandler = (value) => {
+    setMsgSent(`Contacts: ${value.contacts} Message: ${value.message}`);
+    console.log(value);
+  };
+
+  const closeHandler = () => {
+    setMsgSent(null);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
     checkDuplicateHandler();
     checkInvalidHandler();
-    console.log({
+    messageSentHandler({
       contacts: contacts.current.value.split("\n").filter((num) => {
         return num.trim().length > 0;
       }),
@@ -190,6 +201,15 @@ const Form = (props) => {
           Send Message
         </button>
       </form>
+      {msgSent && (
+        <Modal>
+          <p className={classes.display}>||Message Sent Successfully||</p>
+          {msgSent}
+          <button className={classes.button} onClick={closeHandler}>
+            Close
+          </button>
+        </Modal>
+      )}
     </div>
   );
 };

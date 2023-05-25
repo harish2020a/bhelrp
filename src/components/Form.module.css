@@ -92,6 +92,13 @@
   display: none;
 }
 
+.display {
+  text-align: center;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+
 @media (max-width: 480px) {
   form {
     width: 22rem;
