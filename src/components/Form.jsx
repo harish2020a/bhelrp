@@ -89,14 +89,14 @@ const Form = (props) => {
 
   return (
     <div className={classes.arbitrary}>
-      <button
-        className={classes.button}
-        style={{ float: "right" }}
-        onClick={props.onLogout}
-      >
-        Log Out
-      </button>
-      <form id="form" onSubmit={submitHandler}>
+      <form className={classes.form} onSubmit={submitHandler}>
+        <button
+          className={classes.button}
+          style={{ float: "right" }}
+          onClick={props.onLogout}
+        >
+          Log Out
+        </button>
         <label className={classes.label} htmlFor="company">
           Company Name:{" "}
           <select className={classes.select} name="company" id="company">
