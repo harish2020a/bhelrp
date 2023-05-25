@@ -101,9 +101,9 @@
 
 @media (max-width: 500px) {
   .form {
-    width: 15rem;
+    width: 22rem;
   }
   .select {
-    width: 10rem;
+    width: 15rem;
   }
 }
