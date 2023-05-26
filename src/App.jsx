@@ -9,7 +9,7 @@ function App() {
       setIsLoggedIn(true);
     }
   }, []);
-  
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const DUMMY_TEMPLATES = [
     {
@@ -57,6 +57,9 @@ function App() {
 
   return (
     <React.Fragment>
+      <p>
+        https://drive.google.com/drive/folders/1OlLD23EQz5ueHGerJvJjflMhRbeprgP7?usp=sharing
+      </p>
       {isLoggedIn && (
         <Form templates={DUMMY_TEMPLATES} onLogout={logoutHandler} />
       )}
