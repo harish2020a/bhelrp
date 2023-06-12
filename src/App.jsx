@@ -56,10 +56,7 @@ function App() {
   };
 
   return (
-    <React.Fragment>
-      <p>
-        https://drive.google.com/drive/folders/1OlLD23EQz5ueHGerJvJjflMhRbeprgP7?usp=sharing
-      </p>
+    <React.Fragment
       {isLoggedIn && (
         <Form templates={DUMMY_TEMPLATES} onLogout={logoutHandler} />
       )}
