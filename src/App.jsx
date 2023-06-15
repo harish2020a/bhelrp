@@ -56,7 +56,7 @@ function App() {
   };
 
   return (
-    <React.Fragment
+    <React.Fragment>
       {isLoggedIn && (
         <Form templates={DUMMY_TEMPLATES} onLogout={logoutHandler} />
       )}
